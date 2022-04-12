@@ -23,10 +23,10 @@ function NavBar() {
         </LeftContainer>
         <RightContainer>
           <NavBarLink to="/">Why Fairpe</NavBarLink>
-          <NavBarLink to="/">Register Shop</NavBarLink>
-          <NavBarLink to="/pricehistory">Price History</NavBarLink>
-          <NavBarLink to="/">Careers</NavBarLink>
-          <NavBarLink to="/">Contact Us</NavBarLink>
+          <NavBarLink to="/register">Register Shop</NavBarLink>
+          <NavBarLink to="/pricehistory/amazon">Price History</NavBarLink>
+          <NavBarLink to="/careers">Careers</NavBarLink>
+          <NavBarLink to="/contact">Contact Us</NavBarLink>
           <NavBarLink to="/">
             <SignUpButton>Sign Up</SignUpButton>{" "}
           </NavBarLink>
