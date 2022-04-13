@@ -10,39 +10,52 @@ import {
   BottomContainer,
   ProductContainer,
   AdContainer,
-  ProductImg,
+  ProductImg,ProductHead,
   AdImg,
   ProductDetails,
   AmazonViewBtn,
   BtnContainer,
   MRPContainer,
   SaveContainer,
-  PriceContainer
+  PriceContainer,
 } from "../../styles/PriceHistory.styles";
 import AverageChart from "./chart/AverageChart";
 import PriceChart from "./chart/PriceChart";
-import { ChartContainer,ChartTitle } from "../../styles/Chart.styles";
-import Selector from "./chart/Selector"
+import {
+  ChartContainer,
+  ChartTitle,
+  LegendBox,
+  MinBox,
+  MaxBox,
+} from "../../styles/Chart.styles";
+import Selector from "./chart/Selector";
+import {formatDate} from '../../utils/dateformatter'
 
-function formatDate(input) {
-  console.log("i", input);
-  const arrObj = input.map((x) => {
-    return {
-      date: x[0].slice(6, 10) + "-" + x[0].slice(3, 5) + "-" + x[0].slice(0, 2),
-      value: x[1],
-    };
-  });
+/**
+ * Main component that displays Product , advertisement and Chart
+ * 
+ * Component Tree
+ * PriceHistoryWrapper
+ * ----TopContainer
+ *          ----ProductContainer
+ *          ----AdContainer
+ * ----BottomContainer
+ *          ----ChartTitle
+ *          ----ChartContainer
+ *                  ----BarChart (Average Chart)
+ *                  ----AreaChart (Price Chart)
+ *          ----ChartLegend
+ */
 
-  console.log("cx", arrObj);
-  return arrObj;
-}
+ const url =
+ "https://pricegraph.fairpe.com/?url=https://www.flipkart.com/roadster-solid-men-polo-neck-dark-blue-t-shirt/p/itmc7ad331d857a4?pid=TSHFKG2UWAT9KTCE%26lid=LSTTSHFKG2UWAT9KTCE95XYZ6%26marketplace=FLIPKART%26store=clo%2Fash%26srno=b_1_1%26otracker=hp_omu_Deals%2Bof%2Bthe%2BDay_1_4.dealCard.OMU_GAMQD2CWQA9T_3%26otracker1=hp_omu_SECTIONED_manualRanking_neo%2Fmerchandising_Deals%2Bof%2Bthe%2BDay_NA_dealCard_cc_1_NA_view-all_3%26fm=neo%2Fmerchandising%26iid=en_DyH6AeMS27c8AurtqjaZUGiWOXiQFgV9OOdfprN8GKseDCdy6VM6D3oQ3mHjYrfLkyA8PifvSW1%2BirfqAZUNwA%3D%3D%26ppt=browse%26ppn=browse%26ssid=2979k1pq3nn1kao01649158174029";
+
 
 function PriceHistory() {
-  const [apiData, setApiData] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const url =
-    "https://pricegraph.fairpe.com/?url=https://www.flipkart.com/roadster-solid-men-polo-neck-dark-blue-t-shirt/p/itmc7ad331d857a4?pid=TSHFKG2UWAT9KTCE%26lid=LSTTSHFKG2UWAT9KTCE95XYZ6%26marketplace=FLIPKART%26store=clo%2Fash%26srno=b_1_1%26otracker=hp_omu_Deals%2Bof%2Bthe%2BDay_1_4.dealCard.OMU_GAMQD2CWQA9T_3%26otracker1=hp_omu_SECTIONED_manualRanking_neo%2Fmerchandising_Deals%2Bof%2Bthe%2BDay_NA_dealCard_cc_1_NA_view-all_3%26fm=neo%2Fmerchandising%26iid=en_DyH6AeMS27c8AurtqjaZUGiWOXiQFgV9OOdfprN8GKseDCdy6VM6D3oQ3mHjYrfLkyA8PifvSW1%2BirfqAZUNwA%3D%3D%26ppt=browse%26ppn=browse%26ssid=2979k1pq3nn1kao01649158174029";
+  
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
@@ -50,10 +63,8 @@ function PriceHistory() {
 
       try {
         const result = await axios(url);
-        console.log(result.data);
-        setApiData(result.data);
+        setChartData(result.data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
       }
       setIsLoading(false);
@@ -66,6 +77,7 @@ function PriceHistory() {
         <ProductContainer>
           <ProductImg src={product} alt="product" />
           <ProductDetails>
+            <ProductHead>Amazon price History</ProductHead>
             <h2>Apple iPhone 12 (128GB) - Blue</h2>
             <ReactStars
               size={30}
@@ -94,16 +106,27 @@ function PriceHistory() {
         </AdContainer>
       </TopContainer>
       <BottomContainer>
-        <ChartTitle><h1>PRICE GRAPH</h1><Selector></Selector></ChartTitle>
+        <ChartTitle>
+          <div><h1>PRICE GRAPH</h1></div> 
+          <Selector></Selector>
+        </ChartTitle>
         {isError ? (
           <h2 style={{ color: "black" }}>Something went wrong ...</h2>
         ) : isLoading ? (
           <div style={{ color: "black" }}>Loading ...</div>
         ) : (
-          <ChartContainer>
-            <AverageChart data={formatDate(apiData)}></AverageChart>
-            <PriceChart data={formatDate(apiData)}></PriceChart>
-          </ChartContainer>
+          <>
+            <ChartContainer>
+              <AverageChart data={formatDate(chartData)}></AverageChart>
+              <PriceChart data={formatDate(chartData)}></PriceChart>
+            </ChartContainer>
+            <LegendBox>
+              <MaxBox></MaxBox>
+              <span>Maximum Price</span>
+              <MinBox></MinBox>
+              <span> Minimum Price</span>
+            </LegendBox>
+          </>
         )}
       </BottomContainer>
     </PriceHistoryWrapper>

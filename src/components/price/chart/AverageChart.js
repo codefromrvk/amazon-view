@@ -1,50 +1,65 @@
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+
+/**
+ * Bar Chart Component (Left part of the entire chart component)
+ *
+ * Used to display only max and min bars
+ *
+ */
 
 export default function AverageChart({ data }) {
-  console.log("sdata inside avgchart", data);
   const dataFiltered = [
     {
+      name :"Average",
       max: data.reduce(function (prev, current) {
         return prev.value > current.value ? prev : current;
       }, 0).value,
       min: data.reduce(function (prev, current) {
         return prev.value < current.value ? prev : current;
-      }, 0).value
-    }
+      }, 0).value,
+    },
   ];
 
   return (
-    // <ResponsiveContainer width="100%" height="100%">
     <BarChart
-      width={150}
+      width={200}
       height={300}
       data={dataFiltered}
       margin={{
         top: 10,
         right: 0,
         left: 0,
-        bottom: 0
+        bottom: 0,
       }}
+      barGap={10}
     >
       <CartesianGrid vertical={false} strokeDasharray="4 4" />
-      <XAxis dataKey="value" tickLine={false} />
-      {/* tickFormatter={(number) => `Rs.${number}`} */}
-      <YAxis axisLine={false} />
-      <Tooltip />
-      {/* <Legend /> */}
-      <Bar dataKey="max" barSize={20} fill="#A9DAF2" />
-      <Bar dataKey="min" barSize={20} fill="#F86112" />
+      <XAxis dataKey="name" tickLine={false} stroke="black"/>
+
+      <YAxis axisLine={false} stroke="black" />
+      <Tooltip
+        itemStyle={{
+          color: "white",
+        }}
+        contentStyle={{
+          backgroundColor: "#60608E",
+          fontSize: "1rem",
+          color: "white"
+        }}
+        // payload={[...payload,name:""]}
+        formatter={toolTipFormat}
+      />
+      <Bar dataKey="max" barSize={26} fill="#A9DAF2" />
+      <Bar dataKey="min" barSize={26} fill="#F86112" />
     </BarChart>
-    // </ResponsiveContainer>
   );
+}
+
+function toolTipFormat(value, name, props){
+
+  console.log("ans",value,name,props)
+  console.log(props.payload.name);
+  return [2,"name"]
+  // return [{...props.payload,name:""},props.payload]
 }

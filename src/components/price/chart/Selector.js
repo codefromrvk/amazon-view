@@ -1,11 +1,17 @@
 import React from "react";
 import { format } from "date-fns";
-
 import styled from "styled-components";
+
+
+/**
+ * Component to select the date range
+ * Eg: Last 30 Days,Last 60 Days etc
+ */
+
 const Select = styled.select`
   width: 116px;
   height: 32px;
-  color: black;
+  color: #4E4C4C;
   padding-left: 5px;
   font-size: 14px;
   border: none;
@@ -24,16 +30,16 @@ const Select = styled.select`
     padding: 0px 2px 1px;
   }
 `;
+
+
 function Selector() {
+
   return (
-    <div className="App">
+
       <Select>
-        {/* <option value="" hidden>
-          Type
-        </option> */}
         <option value="1">{format(new Date(),"MMMM")}</option>
       </Select>
-    </div>
+
   );
 }
 

@@ -7,15 +7,15 @@ export const PriceHistoryWrapper = styled.div`
 
 export const TopContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 2rem;
   @media (max-width: 726px){
     flex-direction: column;
   }
 `;
 export const BottomContainer = styled.div`
-width:70%;
-margin: auto;
+display: flex;
+    flex-direction: column;
 `;
 export const ProductContainer = styled.div`
   display: flex;
@@ -25,14 +25,22 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductImg = styled.img`
-    max-height: 250px;
+    max-height: 300px;
     max-width: 300px;
     margin: auto;
+`;
+export const ProductHead = styled.span`
+color:#737373;
+font-weight: 450;
+font-size: 20px;
+line-height: 25px;
 `;
 export const ProductDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 1rem auto;
+
   h2 {
     color: black;
     font-weight: 450;
@@ -88,7 +96,7 @@ export const AmazonViewBtn = styled.button`
   border: 1px solid #9e8c3c;
   box-sizing: border-box;
   border-radius: 5px;
-  padding: 0.2rem 1rem;
+  padding: 0.3rem 1.7rem;
   cursor: pointer;
 `;
 export const BtnContainer = styled.div`
