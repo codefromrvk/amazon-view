@@ -48,7 +48,13 @@ export default function AverageChart({ data }) {
           color: "white"
         }}
         // payload={[...payload,name:""]}
-        formatter={toolTipFormat}
+        // formatter={toolTipFormat}
+        formatter={function(value, name) {
+          return `${value}`;
+        }}
+        labelFormatter={function(value) {
+          return `label: ${value}`;
+        }}
       />
       <Bar dataKey="max" barSize={26} fill="#A9DAF2" />
       <Bar dataKey="min" barSize={26} fill="#F86112" />
@@ -60,6 +66,7 @@ function toolTipFormat(value, name, props){
 
   console.log("ans",value,name,props)
   console.log(props.payload.name);
+  
   return [2,"name"]
   // return [{...props.payload,name:""},props.payload]
 }

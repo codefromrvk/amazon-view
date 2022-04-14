@@ -26,9 +26,9 @@ function NavBar() {
         </LeftContainer>
         <RightContainer>
 
-          <NavBarLinkDemo to="">Why Fairpe</NavBarLinkDemo>
-          <NavBarLinkDemo to="">Register Shop</NavBarLinkDemo>
-          <NavBarLink to="/pricehistory/123">Price History</NavBarLink>
+          <NavBarLinkDemo to="/">Why Fairpe</NavBarLinkDemo>
+          <NavBarLinkDemo to="/">Register Shop</NavBarLinkDemo>
+          <NavBarLink to="pricehistory">Price History</NavBarLink>
           <NavBarLinkDemo to="">Careers</NavBarLinkDemo>
           <NavBarLinkDemo to="">Contact Us</NavBarLinkDemo>
           <NavBarLinkDemo to="">

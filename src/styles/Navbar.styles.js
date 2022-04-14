@@ -62,8 +62,13 @@ export const NavBarLink = styled(NavLink)`
   }
 `;
 
-export const NavBarLinkDemo = styled(NavBarLink)`
+export const NavBarLinkDemo = styled.a`
   pointer-events: none;
+  font-size: 1.1rem;
+  color: grey;
+  text-decoration: none;
+  margin-right: 3rem;
+  padding: 0.5rem 0;
 
 `
 export const NavBarExtendedLink = styled(NavLink)`
@@ -81,8 +86,13 @@ export const NavBarExtendedLink = styled(NavLink)`
   }
 `;
 
-export const NavBarExtendedLinkDemo = styled(NavBarExtendedLink)`
+export const NavBarExtendedLinkDemo = styled.a`
   pointer-events: none;
+  font-size: 1.1rem;
+  color: grey;
+  text-decoration: none;
+  margin-right: 3rem;
+  padding: 0.5rem 0;
 
 `
 
