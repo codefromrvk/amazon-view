@@ -27,7 +27,7 @@ function App() {
           path="pricehistory"
           element={
             <>
-              <h1>Price History default Page</h1>
+              {/* <h1>Price History default Page</h1> */}
               <Outlet />{" "}
             </>
           }

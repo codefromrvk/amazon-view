@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { format, parseISO, subDays } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { CustomTooltip } from "./CustomToolTip";
 
 /**
@@ -19,7 +19,7 @@ import { CustomTooltip } from "./CustomToolTip";
 
 const PriceChart = ({ data }) => {
   return (
-    <div style={{ width: "55%", height: 300 }}>
+    <div style={{ width: "52%", height: 300 }}>
       <ResponsiveContainer>
         <AreaChart
           data={data}
@@ -41,13 +41,12 @@ const PriceChart = ({ data }) => {
             stroke="black"
             dataKey="date"
             tickLine={false}
-            tickCount={5}
             tickFormatter={(str) => {
               const date = parseISO(str);
               return format(date, " d");
             }}
           />
-          <YAxis opacity={0} axisLine={false} stroke="black" />
+          <YAxis   opacity={0} axisLine={false} stroke="black" />
           <Tooltip content={<CustomTooltip />} />
           <Area
             dataKey="value"

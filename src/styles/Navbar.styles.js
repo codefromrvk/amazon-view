@@ -70,6 +70,13 @@ export const NavBarLinkDemo = styled.a`
   margin-right: 3rem;
   padding: 0.5rem 0;
 
+  @media (max-width: 1000px){
+        display: none;
+    }
+    &.active {
+    border-bottom: 2px solid #E11307;
+  }
+
 `
 export const NavBarExtendedLink = styled(NavLink)`
   font-size: 1.1rem;
@@ -93,6 +100,13 @@ export const NavBarExtendedLinkDemo = styled.a`
   text-decoration: none;
   margin-right: 3rem;
   padding: 0.5rem 0;
+
+  @media (min-width: 1000px){
+        display: none;
+    }
+    &.active {
+    border-bottom: 2px solid #E11307;
+  }
 
 `
 

@@ -37,8 +37,9 @@ export default function AverageChart({ data }) {
       <CartesianGrid vertical={false} strokeDasharray="4 4" />
       <XAxis dataKey="name" tickLine={false} stroke="black"/>
 
-      <YAxis axisLine={false} stroke="black" />
+      <YAxis axisLine={false} stroke="black"/>
       <Tooltip
+      allowEscapeViewBox={{ x: true, y: true }}
         itemStyle={{
           color: "white",
         }}
@@ -47,13 +48,12 @@ export default function AverageChart({ data }) {
           fontSize: "1rem",
           color: "white"
         }}
-        // payload={[...payload,name:""]}
-        // formatter={toolTipFormat}
+
         formatter={function(value, name) {
-          return `${value}`;
+          return `Rs.${value}/-`;
         }}
         labelFormatter={function(value) {
-          return `label: ${value}`;
+          return "";
         }}
       />
       <Bar dataKey="max" barSize={26} fill="#A9DAF2" />
@@ -62,11 +62,3 @@ export default function AverageChart({ data }) {
   );
 }
 
-function toolTipFormat(value, name, props){
-
-  console.log("ans",value,name,props)
-  console.log(props.payload.name);
-  
-  return [2,"name"]
-  // return [{...props.payload,name:""},props.payload]
-}

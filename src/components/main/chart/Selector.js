@@ -37,7 +37,7 @@ function Selector() {
   return (
 
       <Select>
-        <option value="1">{format(new Date(),"MMMM")}</option>
+        <option value="1">{format(new Date(),"MMMM  yyyy")}</option>
       </Select>
 
   );

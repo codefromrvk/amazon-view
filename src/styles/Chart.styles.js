@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ThreeDots } from "react-loader-spinner";
 
 export const ChartContainer = styled.div`
   display: flex;
@@ -49,3 +50,14 @@ export const MinBox = styled.div`
   margin-left: 1rem;
   background-color: #f86112;
 `;
+
+export const Loader = styled.div`
+
+display: flex;
+flex-direction: column;
+align-items: center;
+span{
+  font-weight: 600;
+}
+
+`
