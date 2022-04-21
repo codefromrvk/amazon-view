@@ -42,8 +42,7 @@ import { ChartError } from "../../styles/Error.styles";
  *          ----ChartLegend
  */
 
-const url =
-  "https://pricegraph.fairpe.com/?url=https://www.flipkart.com/roadster-solid-men-polo-neck-dark-blue-t-shirt/p/itmc7ad331d857a4?pid=TSHFKG2UWAT9KTCE%26lid=LSTTSHFKG2UWAT9KTCE95XYZ6%26marketplace=FLIPKART%26store=clo%2Fash%26srno=b_1_1%26otracker=hp_omu_Deals%2Bof%2Bthe%2BDay_1_4.dealCard.OMU_GAMQD2CWQA9T_3%26otracker1=hp_omu_SECTIONED_manualRanking_neo%2Fmerchandising_Deals%2Bof%2Bthe%2BDay_NA_dealCard_cc_1_NA_view-all_3%26fm=neo%2Fmerchandising%26iid=en_DyH6AeMS27c8AurtqjaZUGiWOXiQFgV9OOdfprN8GKseDCdy6VM6D3oQ3mHjYrfLkyA8PifvSW1%2BirfqAZUNwA%3D%3D%26ppt=browse%26ppn=browse%26ssid=2979k1pq3nn1kao01649158174029";
+const url = "https://api.chucknorris.io/jokes/random";
 
 const url2 = "";
 
@@ -66,37 +65,16 @@ function PriceHistory() {
         const result = await axios.get(url);
         console.log(result.data);
         setChartData(result.data);
-
       } catch (error) {
         setIsError(true);
       }
 
-
       setIsLoading(false);
     }
-    // fetchData();
-    setTimeout(fetchData, 5000);
+    fetchData();
+    // setTimeout(fetchData, 5000);
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     setIsProductError(false);
-  //     setIsProductLoading(true);
-
-  //     try {
-  //       const result = await axios.get(url2)
-
-  //       console.log("res",result)
-  //       setProductData(result.data.value);
-  //     } catch (error) {
-  //       console.log(error)
-  //       console.log(isProductError)
-  //       setIsProductError(true);
-  //     }
-  //     setIsProductLoading(false);
-  //   }
-  //   fetchData();
-  // }, []);
   return (
     <PriceHistoryWrapper>
       <TopContainer>
@@ -132,44 +110,7 @@ function PriceHistory() {
           <AdImg src={ad} alt="advertisement" />
         </AdContainer>
       </TopContainer>
-      <BottomContainer>
-        {/* <ChartTitle>
-          <div><h1>PRICE GRAPH</h1></div> 
-          <Selector></Selector>
-        </ChartTitle>
-        {isError ? (
-          <h2 style={{ color: "black" }}>Something went wrong ...</h2>
-        ) : isLoading ? (
-          <div style={{ color: "black" }}>Loading ...</div>
-        ) : (
-          <>
-            <ChartContainer>
-              <AverageChart data={formatDate(chartData)}></AverageChart>
-              <PriceChart data={formatDate(chartData)}></PriceChart>
-            </ChartContainer>
-            <LegendBox>
-              <MaxBox></MaxBox>
-              <span>Maximum Price</span>
-              <MinBox></MinBox>
-              <span> Minimum Price</span>
-            </LegendBox>
-          </>
-        )} */}
-        {/* {true ? (
-          <h2 style={{ color: "black" }}>Something went wrong ...</h2>
-       <ChartError><span> Oops!!! Something went wrong ...</span><p>Be patient while fix the error</p></ChartError>
-
-        ) :
-         isLoading ? (
-          <Loader>
-            <ThreeDots color="black" height="100" width="100" />
-            <span>Loading Data</span>
-          </Loader>
-        ) : ( */}
-          <ChartMain chartData={chartData} isLoading={isLoading} isError={isError}/>
-        {/* )
-        } */}
-      </BottomContainer>
+      <BottomContainer></BottomContainer>
     </PriceHistoryWrapper>
   );
 }
